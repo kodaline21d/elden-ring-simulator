@@ -1,0 +1,151 @@
+/* 全体の背景と配置 */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0f0f0f;
+  color: #c9c9c9;
+  font-family: 'serif';
+}
+
+/* シミュレーターの枠 */
+.container {
+  background-color: #1e1e1e;
+  border: 1px solid #5a4a2a;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  width: 95%;
+  max-width: 900px; /* ステータス増に伴い少し広げました */
+}
+
+h1 {
+  font-size: 1.5rem;
+  color: #d4af37;
+  text-align: center;
+  border-bottom: 1px solid #5a4a2a;
+  padding-bottom: 15px;
+  margin-top: 0;
+}
+
+/* 左右分割レイアウト */
+.main-layout {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* 左側：入力エリア（スクロール対応） */
+.input-side {
+  flex: 1;
+  min-width: 300px;
+  max-height: 550px; /* スマホ等で長くなりすぎないよう制限 */
+  overflow-y: auto;  /* はみ出たらスクロール */
+  padding-right: 10px;
+}
+
+/* 入力エリアのスクロールバーを少しオシャレに */
+.input-side::-webkit-scrollbar {
+  width: 5px;
+}
+.input-side::-webkit-scrollbar-thumb {
+  background: #5a4a2a;
+}
+
+.status-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 20px;
+}
+
+.status-field label {
+  font-size: 0.9rem;
+}
+
+input, select {
+  width: 150px;
+  box-sizing: border-box;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #444;
+}
+
+/* 右側：武器カード */
+.detail-side {
+  flex: 1;
+  min-width: 300px;
+}
+
+.weapon-card {
+  background: linear-gradient(135deg, #252525 0%, #1a1a1a 100%);
+  border: 1px solid #444;
+  padding: 20px;
+  border-top: 3px solid #d4af37;
+}
+
+.badge {
+  background: #5a4a2a;
+  color: #d4af37;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  border-radius: 2px;
+}
+
+/* HP/FP/スタミナ表示エリア */
+.sub-stats {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+
+.sub-stats .stat-row span:last-child {
+  color: #eee;
+  font-weight: bold;
+}
+
+/* カード内の区切り線 */
+.card-hr {
+  border: 0;
+  border-top: 1px solid #444;
+  margin: 15px 0;
+}
+
+.bonus-text {
+  color: #88ff88;
+  font-weight: bold;
+}
+
+.total-area {
+  text-align: center;
+  margin-top: 15px;
+}
+
+#attack-power {
+  font-size: 2.5rem;
+  color: #d4af37;
+  font-weight: bold;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #5a4a2a, transparent);
+  margin: 20px 0;
+}
