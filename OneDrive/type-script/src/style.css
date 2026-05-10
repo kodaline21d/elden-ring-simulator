@@ -7,7 +7,8 @@ body {
   min-height: 100vh;
   background-color: #0f0f0f;
   color: #c9c9c9;
-  font-family: 'serif';
+  font-family: 'Georgia', '游明朝', 'Yu Mincho', serif;
+  /* フォントをより重厚に */
 }
 
 /* シミュレーターの枠 */
@@ -18,7 +19,7 @@ body {
   border-radius: 4px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   width: 95%;
-  max-width: 900px; /* ステータス増に伴い少し広げました */
+  max-width: 900px;
 }
 
 h1 {
@@ -28,6 +29,7 @@ h1 {
   border-bottom: 1px solid #5a4a2a;
   padding-bottom: 15px;
   margin-top: 0;
+  letter-spacing: 2px;
 }
 
 /* 左右分割レイアウト */
@@ -38,21 +40,23 @@ h1 {
   margin-top: 20px;
 }
 
-/* 左側：入力エリア（スクロール対応） */
+/* 左側：入力エリア */
 .input-side {
   flex: 1;
   min-width: 300px;
-  max-height: 550px; /* スマホ等で長くなりすぎないよう制限 */
-  overflow-y: auto;  /* はみ出たらスクロール */
-  padding-right: 10px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 15px;
 }
 
-/* 入力エリアのスクロールバーを少しオシャレに */
+/* スクロールバーのデザイン */
 .input-side::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
+
 .input-side::-webkit-scrollbar-thumb {
   background: #5a4a2a;
+  border-radius: 3px;
 }
 
 .status-field {
@@ -60,25 +64,40 @@ h1 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
-  gap: 20px;
+  gap: 15px;
 }
 
 .status-field label {
   font-size: 0.9rem;
+  font-weight: bold;
 }
 
-input, select {
-  width: 150px;
+/* 入力・選択ボックスの共通設定 */
+input,
+select {
   box-sizing: border-box;
   background: #2a2a2a;
   border: 1px solid #444;
   color: #fff;
   padding: 8px;
   border-radius: 4px;
-  border: 1px solid #444;
+  transition: border-color 0.2s;
 }
 
-/* 右側：武器カード */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #d4af37;
+}
+
+input[type="number"] {
+  width: 80px;
+}
+
+#weapon-select {
+  width: 180px;
+}
+
 .detail-side {
   flex: 1;
   min-width: 300px;
@@ -89,37 +108,40 @@ input, select {
   border: 1px solid #444;
   padding: 20px;
   border-top: 3px solid #d4af37;
+  position: sticky;
+  top: 20px;
 }
 
 .badge {
   background: #5a4a2a;
   color: #d4af37;
   padding: 2px 8px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   border-radius: 2px;
+  text-transform: uppercase;
 }
 
-/* HP/FP/スタミナ表示エリア */
+/* HP/FP/スタミナ表示 */
 .sub-stats {
-  margin-bottom: 15px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.3);
+  margin: 15px 0;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 4px;
+  border-left: 2px solid #5a4a2a;
 }
 
 .stat-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
-.sub-stats .stat-row span:last-child {
+.stat-row span:last-child {
   color: #eee;
   font-weight: bold;
 }
 
-/* カード内の区切り線 */
 .card-hr {
   border: 0;
   border-top: 1px solid #444;
@@ -131,21 +153,57 @@ input, select {
   font-weight: bold;
 }
 
+/* 合計攻撃力エリア */
 .total-area {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px double #5a4a2a;
+}
+
+.total-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 5px;
 }
 
 #attack-power {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: #d4af37;
   font-weight: bold;
-  text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
 }
 
 hr {
   border: none;
   height: 1px;
   background: linear-gradient(to right, transparent, #5a4a2a, transparent);
-  margin: 20px 0;
+  margin: 25px 0;
+}
+
+/* スマホ対応（レスポンシブ） */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .input-side {
+    max-height: none;
+    padding-right: 0;
+  }
+
+  #weapon-select {
+    width: 100%;
+    /* スマホでは全幅 */
+    max-width: none;
+  }
+
+  #attack-power {
+    font-size: 2.2rem;
+  }
 }

@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ELDEN RING Full Status Simulator</title>
-  <link rel="stylesheet" href="src/style.css">
+  <link rel="stylesheet" href="./src/style.css">
 </head>
+
 <body>
 
   <div class="container">
     <h1>ELDEN RING Status Simulator</h1>
 
     <div class="main-layout">
-      <!-- 左側：入力エリア（全ステータス） -->
       <div class="input-side">
         <div class="status-field">
           <label>武器選択:</label>
           <select id="weapon-select"></select>
         </div>
-        <!-- 攻撃に関係ないステータスも、HP等の計算に使うためIDを振ります -->
+
         <div class="status-field"><label>生命力:</label><input type="number" id="vigor" value="10" min="1" max="99"></div>
         <div class="status-field"><label>精神力:</label><input type="number" id="mind" value="10" min="1" max="99"></div>
-        <div class="status-field"><label>持久力:</label><input type="number" id="endurance" value="10" min="1" max="99"></div>
-        <div class="status-field"><label>筋力:</label><input type="number" id="strength" value="10" min="1" max="99"></div>
-        <div class="status-field"><label>技量:</label><input type="number" id="dexterity" value="10" min="1" max="99"></div>
-        <div class="status-field"><label>知力:</label><input type="number" id="intelligence" value="10" min="1" max="99"></div>
+        <div class="status-field"><label>持久力:</label><input type="number" id="endurance" value="10" min="1" max="99">
+        </div>
+        <div class="status-field"><label>筋力:</label><input type="number" id="strength" value="10" min="1" max="99">
+        </div>
+        <div class="status-field"><label>技量:</label><input type="number" id="dexterity" value="10" min="1" max="99">
+        </div>
+        <div class="status-field"><label>知力:</label><input type="number" id="intelligence" value="10" min="1" max="99">
+        </div>
         <div class="status-field"><label>信仰:</label><input type="number" id="faith" value="10" min="1" max="99"></div>
         <div class="status-field"><label>神秘:</label><input type="number" id="arcane" value="10" min="1" max="99"></div>
       </div>
 
-      <!-- 右側：詳細詳細（攻撃力 + サブステータス） -->
       <div class="detail-side">
         <div class="weapon-card">
           <div class="card-header">
             <span id="display-category" class="badge">---</span>
             <h3 id="display-name">武器を選択してください</h3>
           </div>
-          
-          <!-- サブステータス表示（追加分） -->
+
           <div class="sub-stats">
             <div class="stat-row"><span>HP</span><span id="display-hp">0</span></div>
             <div class="stat-row"><span>FP</span><span id="display-fp">0</span></div>
             <div class="stat-row"><span>スタミナ</span><span id="display-stamina">0</span></div>
           </div>
-          
+
           <hr class="card-hr">
 
           <div class="card-stats">
@@ -59,8 +62,9 @@
     </div>
 
     <hr>
-    <script type="module" src="/src/main.ts"></script>
   </div>
 
+  <script type="module" src="./src/main.ts"></script>
 </body>
+
 </html>
