@@ -31,7 +31,6 @@ function calculate() {
     if (el) el.innerText = text;
   };
 
-  // ステータス取得
   const vig = getVal('vigor');
   const min = getVal('mind');
   const end = getVal('endurance');
@@ -41,8 +40,8 @@ function calculate() {
   const fai = getVal('faith');
   const arc = getVal('arcane');
 
-  // 計算
-  const hp = 400 + (vig * 15) + (vig > 40 ? vig * 5 : vig * 10);
+  // サブステータス計算
+  const hp = 400 + (vig * 15) + (vig > 40 ? (vig - 40) * 10 + 600 : vig * 10);
   const fp = 50 + (min * 3);
   const stamina = 80 + (end * 1.5);
 
@@ -50,7 +49,6 @@ function calculate() {
   setInner('display-fp', Math.floor(fp).toString());
   setInner('display-stamina', Math.floor(stamina).toString());
 
-  // 武器計算
   const weaponSelect = document.getElementById('weapon-select') as HTMLSelectElement;
   if (!weaponSelect) return;
   const weapon = weaponList[parseInt(weaponSelect.value)];
@@ -67,28 +65,21 @@ function calculate() {
   const atkEl = document.getElementById('attack-power');
   if (atkEl) {
     atkEl.innerText = totalDamage.toString();
-    atkEl.style.color = [str, dex, int, fai, arc].some(v => v >= 80) ? "#ff6666" : "#d4af37";
+    // 筋力〜神秘のどれかが80以上なら赤く、それ以外は黄金色
+    const isSoftCap = [str, dex, int, fai, arc].some(v => v >= 80);
+    atkEl.style.color = isSoftCap ? "#ff4444" : "#d4af37";
   }
 }
 
-// 初期化関数
 function init() {
   const weaponSelect = document.getElementById('weapon-select') as HTMLSelectElement;
-  if (!weaponSelect) return;
-
-  weaponSelect.innerHTML = weaponList.map((w, i) =>
-    `<option value="${i}">[${w.category}] ${w.name}</option>`
-  ).join('');
-
-  // 全要素にイベント登録
-  document.querySelectorAll('input, select').forEach(el => {
-    el.addEventListener('input', calculate);
-  });
-
+  if (weaponSelect) {
+    weaponSelect.innerHTML = weaponList.map((w, i) => `<option value="${i}">[${w.category}] ${w.name}</option>`).join('');
+  }
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calculate));
   calculate();
 }
 
-// DOM読み込み完了を待ってから実行（重要）
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
